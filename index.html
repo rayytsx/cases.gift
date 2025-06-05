@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Кейс-бот</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background: #0d0d0d;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+
+    .case-button {
+      padding: 15px 40px;
+      background: linear-gradient(135deg, #ff6a00, #ee0979);
+      border: none;
+      border-radius: 12px;
+      font-size: 20px;
+      color: #fff;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .case-button:hover {
+      transform: scale(1.05);
+    }
+
+    .result {
+      margin-top: 40px;
+      font-size: 22px;
+      font-weight: bold;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎲 Нажми кнопку, чтобы открыть кейс</h1>
+  <button class="case-button" onclick="openCase()">Открыть кейс</button>
+  <div id="result" class="result"></div>
+
+  <script>
+    const prizes = [
+      "💎 Мифический предмет",
+      "💰 1500 монет",
+      "🧩 Эпическая маска",
+      "🔒 Пусто... повезёт в следующий раз",
+      "🎉 Бонус-кейс",
+      "🪙 NFT-токен"
+    ];
+
+    function openCase() {
+      const btn = document.querySelector('.case-button');
+      const result = document.getElementById('result');
+
+      btn.disabled = true;
+      result.innerText = "🔄 Открываем кейс...";
+
+      setTimeout(() => {
+        const prize = prizes[Math.floor(Math.random() * prizes.length)];
+        result.innerText = `🎁 Тебе выпало: ${prize}`;
+        btn.disabled = false;
+      }, 1500);
+    }
+  </script>
+
+</body>
+</html>
